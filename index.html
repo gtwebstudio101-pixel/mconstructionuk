@@ -523,7 +523,7 @@
     background: var(--mid);
   }
 
-  .quote-mailto-btn {
+  .quote-gmail-btn {
     display: inline-block;
     width: 100%;
     text-align: center;
@@ -541,7 +541,7 @@
     border: none;
     cursor: pointer;
   }
-  .quote-mailto-btn:hover {
+  .quote-gmail-btn:hover {
     background: var(--gold-light);
     transform: translateY(-2px);
   }
@@ -920,13 +920,13 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT - DIRECT GMAIL COMPOSE LINK -->
 <section id="contact">
   <div class="section-eyebrow reveal">Get in Touch</div>
   <h2 class="section-title reveal">Request a <em>Quote</em></h2>
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <p>Fill in the form below, then click "Send Quote Request" to open your email app with all your details pre-filled. Just review and send!</p>
+      <p>Fill in the form below, then click "Send Quote Request" to open Gmail in your browser with all your details pre-filled. Just review and send!</p>
       <div class="contact-items">
         <div class="contact-item">
           <div class="contact-icon">
@@ -963,13 +963,13 @@
       </div>
     </div>
 
-    <!-- Form that captures data and opens email -->
+    <!-- Form that captures data and opens GMAIL COMPOSE in browser -->
     <div class="reveal">
       <div class="quote-box">
         <h3>Request a Quote</h3>
-        <p>Fill in your details below, then click the button to open your email app with all information pre-filled.</p>
+        <p>Fill in your details below, then click the button to open Gmail in your browser with all information pre-filled.</p>
         
-        <form id="quoteForm" onsubmit="sendEmailWithData(event)">
+        <form id="quoteForm" onsubmit="openGmailCompose(event)">
           <div class="form-row">
             <div class="form-group">
               <label for="fname">First Name *</label>
@@ -1008,8 +1008,8 @@
             <label for="message">Message / Project Details *</label>
             <textarea id="message" name="message" placeholder="Tell us about your project…" required></textarea>
           </div>
-          <button type="submit" class="quote-mailto-btn">
-            Send Quote Request via Email
+          <button type="submit" class="quote-gmail-btn">
+            Send Quote Request (Opens Gmail)
           </button>
         </form>
       </div>
@@ -1110,8 +1110,8 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Email quote request - captures form data and opens email app
-  function sendEmailWithData(event) {
+  // Open Gmail Compose with pre-filled data
+  function openGmailCompose(event) {
     event.preventDefault();
     
     // Get form values
@@ -1122,7 +1122,7 @@
     const service = document.getElementById('service').value;
     const message = document.getElementById('message').value;
     
-    // Build email body with all form data
+    // Build email body
     const subject = `Quote Request - ${firstName} ${lastName}`;
     
     const body = `========================================
@@ -1151,14 +1151,14 @@ Thank you!
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
     
-    // Create mailto link and open
-    const mailtoLink = `mailto:mconstructionuk@aol.com?subject=${encodedSubject}&body=${encodedBody}`;
-    window.location.href = mailtoLink;
+    // Create Gmail compose link and open in new tab
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=mconstructionuk@aol.com&su=${encodedSubject}&body=${encodedBody}`;
+    window.open(gmailLink, '_blank');
     
     // Show feedback
     const btn = event.target.querySelector('button[type="submit"]') || event.target;
     const originalText = btn.textContent;
-    btn.textContent = 'Opening Email App...';
+    btn.textContent = 'Opening Gmail...';
     btn.style.background = '#4CAF50';
     setTimeout(() => {
       btn.textContent = originalText;
