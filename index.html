@@ -387,18 +387,24 @@
   .service-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); margin-bottom: 16px; }
   .service-list { list-style: none; }
   .service-list li {
-    font-size: 13px; color: rgba(232,228,220,0.5);
-    padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: rgba(232,228,220,0.6);
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .service-list li::before { content: '—'; color: var(--gold); font-size: 10px; }
+  .service-list li::before {
+    content: '✓';
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+  }
 
   /* ── WHY US ── */
   #why { background: var(--dark2); }
   .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .why-image { position: relative; }
-  .why-image img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
-  /* Removed the yellow border accent */
+  .why-image img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; border-radius: 8px; }
   .why-items { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
   .why-item { display: flex; gap: 20px; align-items: flex-start; }
   .why-num {
@@ -470,35 +476,109 @@
     stroke-width: 2;
   }
 
-  .contact-form { display: flex; flex-direction: column; gap: 16px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  /* Form styles */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
   .form-group label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
-  .form-group input, .form-group textarea, .form-group select {
-    background: var(--mid); border: 1px solid rgba(255,255,255,0.08);
-    color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px;
-    padding: 12px 16px; outline: none;
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--mid);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    padding: 12px 16px;
+    outline: none;
     transition: border-color 0.2s;
     width: 100%;
+    border-radius: 6px;
   }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
     border-color: var(--gold);
   }
-  .form-group textarea { resize: vertical; min-height: 120px; }
-  .form-group select option { background: var(--mid); }
-  .btn-submit {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--dark);
-    background: var(--gold); border: none; cursor: pointer;
-    padding: 16px 36px; align-self: flex-start;
-    transition: background 0.2s, transform 0.15s;
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
   }
-  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .form-group select option {
+    background: var(--mid);
+  }
+
+  .quote-mailto-btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 16px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .quote-mailto-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+  .quote-box {
+    background: var(--mid);
+    padding: 32px;
+    border-radius: 12px;
+    border-left: 3px solid var(--gold);
+  }
+  .quote-box h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .quote-box p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .simple-email-box {
+    background: var(--dark3);
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .simple-email-link {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .simple-email-link:hover {
+    text-decoration: underline;
+  }
 
   /* ── FOOTER ── */
   footer {
@@ -716,8 +796,14 @@
     </div>
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      <div class="service-name">Bathrooms & Kitchens</div>
+      <div class="service-name">Bathrooms</div>
       <p class="service-desc">Luxury bathroom design and installation. Our trusted team handles your renovation from start to finish, with CORGI-registered gas work.</p>
+      <ul class="service-list">
+        <li>Complete Bathroom Renovation</li>
+        <li>Wet Rooms & Walk-in Showers</li>
+        <li>Bespoke Vanity Units</li>
+        <li>Heated Flooring & Tiling</li>
+      </ul>
     </div>
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -732,13 +818,41 @@
     </div>
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <div class="service-name">Landscaping & Decorating</div>
-      <p class="service-desc">Complete exterior and interior finishing — gardens, driveways, and all aspects of painting and decorating.</p>
+      <div class="service-name">Landscaping</div>
+      <p class="service-desc">Complete exterior finishing — gardens, driveways, and outdoor spaces transformed to perfection.</p>
       <ul class="service-list">
-        <li>Fencing, Walling & Paving</li>
+        <li>Garden Design & Planting</li>
+        <li>Driveways & Patios</li>
+        <li>Fencing & Walling</li>
         <li>Decking & Land Drainage</li>
-        <li>Interior & Exterior Decorating</li>
-        <li>Paperhanging & House Painting</li>
+        <li>Paving & Turfing</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Second row for Kitchens and Decorating -->
+  <div class="services-grid" style="margin-top: 1px;">
+    <div class="service-card reveal">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M12 2v20"/><circle cx="12" cy="12" r="10"/></svg>
+      <div class="service-name">Kitchens</div>
+      <p class="service-desc">Custom kitchen design, installation, and complete refurbishment. From modern to traditional styles, we bring your dream kitchen to life.</p>
+      <ul class="service-list">
+        <li>Bespoke Kitchen Design & Installation</li>
+        <li>Worktops & Cabinet Fitting</li>
+        <li>Appliance Installation</li>
+        <li>Kitchen Plumbing & Electrics</li>
+        <li>Splashbacks & Tiling</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+      <div class="service-name">Decorating</div>
+      <p class="service-desc">Professional interior and exterior painting and decorating services for homes and businesses.</p>
+      <ul class="service-list">
+        <li>Interior & Exterior Painting</li>
+        <li>Wallpaper Hanging</li>
+        <li>Feature Walls & Finishes</li>
+        <li>Spray Painting</li>
+        <li>Surface Preparation & Repairs</li>
       </ul>
     </div>
   </div>
@@ -782,7 +896,6 @@
       </div>
     </div>
     <div class="why-image reveal">
-      <!-- Removed the yellow border accent div -->
       <img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/index_img/3.jpg?raw=true" alt="Construction work in progress" loading="lazy">
     </div>
   </div>
@@ -813,7 +926,7 @@
   <h2 class="section-title reveal">Request a <em>Quote</em></h2>
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <p>Whether you have a query or are ready to start your project, our team is ready to help. Call, email, or fill in the form and we'll get back to you promptly.</p>
+      <p>Fill in the form below, then click "Send Quote Request" to open your email app with all your details pre-filled. Just review and send!</p>
       <div class="contact-items">
         <div class="contact-item">
           <div class="contact-icon">
@@ -849,46 +962,63 @@
         </div>
       </div>
     </div>
-    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" placeholder="John" required>
-        </div>
-        <div class="form-group">
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" placeholder="Smith" required>
-        </div>
+
+    <!-- Form that captures data and opens email -->
+    <div class="reveal">
+      <div class="quote-box">
+        <h3>Request a Quote</h3>
+        <p>Fill in your details below, then click the button to open your email app with all information pre-filled.</p>
+        
+        <form id="quoteForm" onsubmit="sendEmailWithData(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="07700 000000">
+          </div>
+          <div class="form-group">
+            <label for="service">Service Required</label>
+            <select id="service" name="service">
+              <option value="">Select a service…</option>
+              <option>Extensions</option>
+              <option>Roofing</option>
+              <option>Basement Conversion</option>
+              <option>Bathroom Renovation</option>
+              <option>Kitchen Installation</option>
+              <option>Electrics</option>
+              <option>Landscaping</option>
+              <option>Decorating</option>
+              <option>New Build</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message / Project Details *</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project…" required></textarea>
+          </div>
+          <button type="submit" class="quote-mailto-btn">
+            Send Quote Request via Email
+          </button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="john@example.com" required>
+      
+      <div class="simple-email-box" style="margin-top: 20px;">
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Or email us directly:</p>
+        <a href="mailto:mconstructionuk@aol.com" class="simple-email-link">mconstructionuk@aol.com</a>
       </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="07700 000000">
-      </div>
-      <div class="form-group">
-        <label for="service">Service Required</label>
-        <select id="service">
-          <option value="">Select a service…</option>
-          <option>Extensions</option>
-          <option>Roofing</option>
-          <option>Basement Conversion</option>
-          <option>Bathroom / Kitchen</option>
-          <option>Electrics</option>
-          <option>Landscaping</option>
-          <option>Painting & Decorating</option>
-          <option>New Build</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" placeholder="Tell us about your project…" required></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Send Message</button>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -916,7 +1046,10 @@
         <li><a href="#services">Roofing</a></li>
         <li><a href="#services">Basements</a></li>
         <li><a href="#services">Bathrooms</a></li>
+        <li><a href="#services">Kitchens</a></li>
         <li><a href="#services">Electrics</a></li>
+        <li><a href="#services">Landscaping</a></li>
+        <li><a href="#services">Decorating</a></li>
       </ul>
     </div>
     <div>
@@ -977,14 +1110,60 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Contact form
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = 'Sent! ✓';
+  // Email quote request - captures form data and opens email app
+  function sendEmailWithData(event) {
+    event.preventDefault();
+    
+    // Get form values
+    const firstName = document.getElementById('fname').value;
+    const lastName = document.getElementById('lname').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value;
+    
+    // Build email body with all form data
+    const subject = `Quote Request - ${firstName} ${lastName}`;
+    
+    const body = `========================================
+QUOTE REQUEST - M CONSTRUCTION UK
+========================================
+
+CUSTOMER DETAILS:
+-----------------
+Full Name: ${firstName} ${lastName}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+
+PROJECT DETAILS:
+----------------
+Service Required: ${service || 'Not specified'}
+
+Message:
+${message}
+
+----------------------------------------
+Please contact me to discuss this project.
+Thank you!
+----------------------------------------`;
+    
+    // Encode for URL
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    
+    // Create mailto link and open
+    const mailtoLink = `mailto:mconstructionuk@aol.com?subject=${encodedSubject}&body=${encodedBody}`;
+    window.location.href = mailtoLink;
+    
+    // Show feedback
+    const btn = event.target.querySelector('button[type="submit"]') || event.target;
+    const originalText = btn.textContent;
+    btn.textContent = 'Opening Email App...';
     btn.style.background = '#4CAF50';
-    btn.style.color = '#fff';
-    setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.style.color = ''; }, 3000);
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+    }, 3000);
   }
 </script>
 </body>
