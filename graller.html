@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery – M Construction UK Ltd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:        #C9A84C;
+    --gold-light:  #E8C97A;
+    --bg:          #0D0D0D;
+    --bg2:         #141414;
+    --bg3:         #1C1C1C;
+    --mid:         #2A2A2A;
+    --border:      rgba(255,255,255,0.08);
+    --text:        #E8E4DC;
+    --text-mid:    #B0AA9F;
+    --muted:       #8A857A;
+    --nav-bg:      #F5F2EC;
+    --nav-text:    #1a3a5c;
+    --card-bg:     #141414;
+    --hero-text:   #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 70px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26, 58, 92, 0.12);
+    box-shadow: 0 1px 16px rgba(0,0,0,0.12);
+  }
+  .nav-logo {
+    display: flex; align-items: center; text-decoration: none;
+  }
+  .nav-logo img {
+    height: 50px; width: auto; display: block;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--nav-text);
+    text-decoration: none; transition: color 0.2s;
+    padding-bottom: 2px; border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover { color: #4a7c59; }
+  .nav-links a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #fff;
+    background: #1a3a5c; border: none; cursor: pointer;
+    padding: 10px 22px; text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #2a5a8c; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 26px; height: 2px; background: var(--nav-text); }
+
+  /* ── HERO ── */
+  .gallery-hero {
+    height: 52vh; min-height: 360px;
+    display: flex; align-items: flex-end;
+    padding: 0 5vw 60px;
+    position: relative; overflow: hidden;
+  }
+  .gallery-hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/454011861a7253dc3641b7f50997761c8ef03291/index_img/Gemini_Generated_Image_.png');
+    background-size: cover; background-position: center;
+  }
+  .gallery-hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.1) 100%);
+  }
+  .gallery-hero-content { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+  .gallery-hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(48px, 7vw, 90px); font-weight: 800;
+    text-transform: uppercase; line-height: 0.95;
+    color: var(--hero-text);
+  }
+  .gallery-hero h1 em { color: var(--gold); font-style: normal; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
+    display: flex; gap: 0; overflow-x: auto;
+    scrollbar-width: none; position: sticky; top: 70px; z-index: 90;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted); background: none; border: none;
+    border-bottom: 2px solid transparent;
+    padding: 18px 22px; cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── GALLERY GRID ── */
+  .gallery-section { padding: 50px 5vw 90px; }
+
+  .masonry { columns: 3; column-gap: 8px; }
+  .masonry-item {
+    break-inside: avoid; margin-bottom: 8px;
+    overflow: hidden; position: relative; cursor: pointer;
+    display: block;
+  }
+  .masonry-item img {
+    width: 100%; display: block;
+    transition: transform 0.55s ease;
+  }
+  .masonry-item:hover img { transform: scale(1.05); }
+  .masonry-item-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex; align-items: flex-end;
+    padding: 16px; transition: background 0.3s;
+  }
+  .masonry-item:hover .masonry-item-overlay { background: rgba(0,0,0,0.38); }
+  .masonry-item-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold);
+    opacity: 0; transform: translateY(6px);
+    transition: opacity 0.3s, transform 0.3s;
+    background: rgba(0,0,0,0.5); padding: 4px 10px;
+  }
+  .masonry-item:hover .masonry-item-label { opacity: 1; transform: none; }
+
+  /* hidden filter state */
+  .masonry-item.hidden { display: none; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.96);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-img { max-width: 90vw; max-height: 88vh; object-fit: contain; display: block; border: 1px solid rgba(255,255,255,0.06); }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none; color: #fff;
+    font-size: 34px; cursor: pointer; opacity: 0.6; transition: opacity 0.2s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+  .lightbox-prev, .lightbox-next {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    color: #fff; font-size: 20px; cursor: pointer;
+    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lightbox-prev:hover, .lightbox-next:hover { background: rgba(201,168,76,0.35); }
+  .lightbox-prev { left: 16px; }
+  .lightbox-next { right: 16px; }
+  .lightbox-caption {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    background: rgba(0,0,0,0.5); padding: 5px 14px;
+  }
+  .lightbox-counter {
+    position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: var(--gold);
+    padding: 56px 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .cta-band-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(24px, 4vw, 48px); font-weight: 800;
+    text-transform: uppercase; color: #fff; line-height: 1;
+  }
+  .btn-dark {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold);
+    background: #fff; border: none; cursor: pointer;
+    padding: 16px 36px; text-decoration: none;
+    transition: background 0.2s; white-space: nowrap; display: inline-block;
+  }
+  .btn-dark:hover { background: #f0ece3; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080808;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 52px 5vw 28px;
+  }
+  .footer-inner {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px;
+  }
+  .footer-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: var(--gold); margin-bottom: 10px; }
+  .footer-sub { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.65; }
+  .footer-col-title { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-links li:not(:has(a)) { font-size: 13px; color: rgba(255,255,255,0.25); line-height: 1.6; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06); padding-top: 22px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-size: 12px; color: rgba(255,255,255,0.2);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .masonry { columns: 2; }
+    .cta-band { flex-direction: column; text-align: center; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    .masonry { columns: 1; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/40ee65383fe7af76d80338c3776cdab6c57e0acf/logo-removebg-preview.png" alt="M Construction UK Ltd">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="graller.html" class="active">Gallery</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="index.html#contact">Free Quote</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(245,242,236,0.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px;">
+  <a onclick="closeMenu()" href="index.html"           style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#1a3a5c;text-decoration:none;">Home</a>
+  <a onclick="closeMenu()" href="index.html#services"  style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#1a3a5c;text-decoration:none;">Services</a>
+  <a onclick="closeMenu()" href="graller.html"         style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#C9A84C;text-decoration:none;">Gallery</a>
+  <a onclick="closeMenu()" href="index.html#contact"   style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#1a3a5c;text-decoration:none;">Contact</a>
+  <a onclick="closeMenu()" href="index.html#contact"   style="background:#1a3a5c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:14px 40px;text-decoration:none;margin-top:8px;">Get a Quote</a>
+  <button onclick="closeMenu()" style="position:absolute;top:24px;right:5vw;background:none;border:none;color:#1a3a5c;font-size:32px;cursor:pointer;">✕</button>
+</div>
+
+<!-- HERO -->
+<div class="gallery-hero">
+  <div class="gallery-hero-bg"></div>
+  <div class="gallery-hero-content">
+    <div class="hero-eyebrow">M Construction UK Ltd</div>
+    <h1>Our <em>Work</em></h1>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterGallery('all',this)">All Projects</button>
+  <button class="filter-btn" onclick="filterGallery('construction',this)">Construction</button>
+  <button class="filter-btn" onclick="filterGallery('roofing',this)">Roofing</button>
+  <button class="filter-btn" onclick="filterGallery('bathrooms',this)">Bathrooms</button>
+  <button class="filter-btn" onclick="filterGallery('kitchens',this)">Kitchens</button>
+  <button class="filter-btn" onclick="filterGallery('rooms',this)">Rooms</button>
+  <button class="filter-btn" onclick="filterGallery('landscaping',this)">Landscaping</button>
+  <button class="filter-btn" onclick="filterGallery('stairs',this)">Stairs & Carpentry</button>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <div class="masonry" id="gallery-grid">
+
+    <!-- CONSTRUCTION -->
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/001_4958.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/002_7637.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/003_6805.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/004_3681.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/005_3662.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/006_9095.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/20161027_092205_7560.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/20161104_073457_3786.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/20161110_125225_5465.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/20161118_145157_3158.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/20161128_100452_2271.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/20161129_094218_7860.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="construction" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/construction/const_6623.jpg" alt="Construction" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Construction</div></div>
+    </div>
+
+    <!-- ROOFING -->
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20161117_154311_2178.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20161117_154325_2551.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20161129_094124_9677.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20161129_094133_8979.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20161129_094218_8903.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20161129_094410_6659.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20161129_094450_4796.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20201210_144151_2608.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20201210_144157_9294.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="roofing" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/roofing/20201210_144225_3518.jpg" alt="Roofing" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Roofing</div></div>
+    </div>
+
+    <!-- BATHROOMS -->
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/001_7502.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/002_5964.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/003_1845.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20130411_082648_5654.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20140730_154753_5994.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20191221_143759_2631.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20191221_143806_3903.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20191221_143812_1474.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20200211_142547_5021.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20200217_132005_4549.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20200217_132013_5240.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20220513_164831_8814.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20221208_142125_6299.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20221208_142500_3827%20(1).jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/20221208_150252_6179.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/Hampstead_4199.jpg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/bathroom%203_8699.jpeg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="bathrooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/bathrooms/bathroom_5839.jpeg" alt="Bathrooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Bathrooms</div></div>
+    </div>
+
+    <!-- KITCHENS -->
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/001_8027.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/003_9323.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/004_4386.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/20130423_095357_6923.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/20130423_095420_8596.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/20180111_092943_7790.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/20180111_092957_2083.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/20221128_130306_5899.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/20221208_150010_8367.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/20221208_150025_1867.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/Kensington%202_2392.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/Kensington%203_9065.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="kitchens" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/kitchens/Kensington_2859.jpg" alt="Kitchens" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Kitchens</div></div>
+    </div>
+
+    <!-- ROOMS -->
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20191221_143920_3588.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20191221_143935_1295.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20191221_143948_1277.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20221208_141400_1697.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20221208_141412_1698.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20221208_142142_7669.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20221208_142322_1499.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20221214_151719_5652.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/20221214_151937_2366.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/IMG-20170905-WA0001_4416.jpeg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/IMG-20170905-WA0005_7300.jpeg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="rooms" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/rooms/IMG-20220208-WA0015_5351.jpg" alt="Rooms" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Rooms</div></div>
+    </div>
+
+    <!-- LANDSCAPING -->
+    <div class="masonry-item reveal" data-cat="landscaping" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/landscaping/001_8614.jpg" alt="Landscaping" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Landscaping</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="landscaping" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/landscaping/002_3414.jpg" alt="Landscaping" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Landscaping</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="landscaping" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/landscaping/20120117_111604_4206.jpg" alt="Landscaping" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Landscaping</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="landscaping" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/landscaping/20120713_105530_7305.jpg" alt="Landscaping" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Landscaping</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="landscaping" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/landscaping/20120719_112511_9470.jpg" alt="Landscaping" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Landscaping</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="landscaping" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/landscaping/20200402_152029_4830.jpg" alt="Landscaping" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Landscaping</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="landscaping" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/landscaping/20200402_152055_9251.jpg" alt="Landscaping" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Landscaping</div></div>
+    </div>
+
+    <!-- STAIRS & CARPENTRY -->
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0081_1373.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0082_5060.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0106_4888.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0158_6468.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0163_8342.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0177_9658.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0178_2300.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0185_5580.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20200521-WA0208_3011.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20210122-WA0001_8692.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20210122-WA0003_3759.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20220201-WA0001_9946.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20220208-WA0014_4271.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20220224-WA0027_9101.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20220224-WA0028_5960.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+    <div class="masonry-item reveal" data-cat="stairs" onclick="openLight(this)">
+      <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/gallery/Stairs%26Carpentry/IMG-20220224-WA0029_5315.jpg" alt="Stairs & Carpentry" loading="lazy">
+      <div class="masonry-item-overlay"><div class="masonry-item-label">Stairs & Carpentry</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightOutside(event)">
+  <button class="lightbox-close" onclick="closeLightFull()">✕</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+  <button class="lightbox-prev" onclick="prevLight(event)">&#8592;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" onclick="nextLight(event)">&#8594;</button>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-text">Ready to start<br>your project?</div>
+  <a class="btn-dark" href="index.html#contact">Get a Free Quote</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">M Construction UK Ltd</div>
+      <p class="footer-sub">Orchardson Street, London NW8 8NN<br>Expert builders across North West London for over 20 years.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="graller.html">Gallery</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="index.html#services">Extensions</a></li>
+        <li><a href="index.html#services">Roofing</a></li>
+        <li><a href="index.html#services">Basements</a></li>
+        <li><a href="index.html#services">Bathrooms</a></li>
+        <li><a href="index.html#services">Electrics</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:07980733770">07980 733770</a></li>
+        <li><a href="tel:02072249209">0207 224 9209</a></li>
+        <li><a href="mailto:mconstructionuk@aol.com">mconstructionuk@aol.com</a></li>
+        <li>Orchardson Street, London NW8 8NN</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 M Construction UK Ltd. All rights reserved.</span>
+    <span>London NW8 8NN</span>
+  </div>
+</footer>
+
+<script>
+  // ── FILTER ──
+  let activeItems = [];
+
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const items = document.querySelectorAll('.masonry-item');
+    items.forEach(el => {
+      if (cat === 'all' || el.dataset.cat === cat) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+    rebuildActive();
+  }
+
+  function rebuildActive() {
+    activeItems = Array.from(document.querySelectorAll('.masonry-item:not(.hidden)')).map(el => ({
+      src: el.querySelector('img').src,
+      label: el.querySelector('.masonry-item-label').textContent,
+      el
+    }));
+  }
+
+  rebuildActive();
+
+  // ── LIGHTBOX ──
+  let currentLight = 0;
+
+  function openLight(el) {
+    rebuildActive();
+    const src = el.querySelector('img').src;
+    currentLight = activeItems.findIndex(i => i.src === src);
+    if (currentLight < 0) currentLight = 0;
+    showLight();
+  }
+
+  function showLight() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.add('open');
+    document.getElementById('lightbox-img').src = activeItems[currentLight].src;
+    document.getElementById('lightbox-caption').textContent = activeItems[currentLight].label;
+    document.getElementById('lightbox-counter').textContent = `${currentLight + 1} / ${activeItems.length}`;
+  }
+
+  function closeLightOutside(e) { if (e.target === document.getElementById('lightbox')) closeLightFull(); }
+  function closeLightFull() { document.getElementById('lightbox').classList.remove('open'); }
+  function prevLight(e) { e.stopPropagation(); currentLight = (currentLight - 1 + activeItems.length) % activeItems.length; showLight(); }
+  function nextLight(e) { e.stopPropagation(); currentLight = (currentLight + 1) % activeItems.length; showLight(); }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') prevLight(e);
+    if (e.key === 'ArrowRight') nextLight(e);
+    if (e.key === 'Escape') closeLightFull();
+  });
+
+  // ── MOBILE MENU ──
+  function toggleMenu() {
+    const m = document.getElementById('mob-menu');
+    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+  }
+  function closeMenu() { document.getElementById('mob-menu').style.display = 'none'; }
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
