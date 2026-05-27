@@ -398,12 +398,7 @@
   .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .why-image { position: relative; }
   .why-image img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
-  .why-image-accent {
-    position: absolute; top: -16px; left: -16px;
-    width: 60%; height: 60%;
-    border: 1px solid rgba(201,168,76,0.3);
-    pointer-events: none;
-  }
+  /* Removed the yellow border accent */
   .why-items { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
   .why-item { display: flex; gap: 20px; align-items: flex-start; }
   .why-num {
@@ -787,7 +782,7 @@
       </div>
     </div>
     <div class="why-image reveal">
-      <div class="why-image-accent"></div>
+      <!-- Removed the yellow border accent div -->
       <img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/index_img/3.jpg?raw=true" alt="Construction work in progress" loading="lazy">
     </div>
   </div>
