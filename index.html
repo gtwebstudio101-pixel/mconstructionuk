@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/6aa412a5ff3a39527accfb1efe721887d75af4e6/Pi7-Image-Cropper.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M Construction UK Ltd – North West London Builders</title>
@@ -241,7 +242,9 @@
   .stat-item:last-child { border-right: none; }
   .stat-num {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 44px; font-weight: 800; color: var(--gold); line-height: 1;
+    font-size: 44px; font-weight: 800; color: var(--gold);
+    line-height: 1;
+    display: inline-block;
   }
   .stat-label {
     font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
@@ -372,15 +375,31 @@
   .address-map-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); text-decoration: none; margin-top: 4px; transition: color 0.2s; }
   .address-map-link:hover { color: var(--gold); }
   .address-map-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  /* Mailto Form Styles */
   .contact-form { display: flex; flex-direction: column; gap: 16px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-  .form-group input, .form-group textarea, .form-group select { background: var(--mid); border: 1px solid rgba(255,255,255,0.08); color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-group input, .form-group textarea, .form-group select { background: var(--mid); border: 1px solid rgba(255,255,255,0.08); color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; border-radius: 6px; }
   .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
-  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group textarea { resize: vertical; min-height: 100px; }
   .form-group select option { background: var(--mid); }
-  .btn-submit { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); background: var(--gold); border: none; cursor: pointer; padding: 16px 36px; align-self: flex-start; transition: background 0.2s, transform 0.15s; }
+
+  .btn-submit {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    border: none;
+    cursor: pointer;
+    padding: 16px 36px;
+    align-self: flex-start;
+    transition: background 0.2s, transform 0.15s;
+  }
   .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
 
   /* ── FOOTER ── */
@@ -406,6 +425,7 @@
     .why-image { order: -1; }
     footer .footer-grid { grid-template-columns: 1fr 1fr; }
     .reviews-track { animation-duration: 28s; }
+    .btn-submit { align-self: stretch; text-align: center; }
   }
   @media (max-width: 520px) {
     .stats-strip { grid-template-columns: repeat(2, 1fr); }
@@ -415,7 +435,6 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 </style>
-<base target="_blank">
 </head>
 <body>
 
@@ -498,12 +517,24 @@
   </div>
 </section>
 
-<!-- STATS STRIP -->
+<!-- STATS STRIP WITH ANIMATED COUNTERS -->
 <div class="stats-strip">
-  <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Years Experience</div></div>
-  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Projects Completed</div></div>
-  <div class="stat-item"><div class="stat-num">£2M</div><div class="stat-label">Public Liability Cover</div></div>
-  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Guaranteed Work</div></div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="counter" data-target="20">0</span>+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="counter" data-target="500">0</span>+</div>
+    <div class="stat-label">Projects Completed</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">£<span class="counter" data-target="2">0</span>M</div>
+    <div class="stat-label">Public Liability Cover</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span class="counter" data-target="100">0</span>%</div>
+    <div class="stat-label">Guaranteed Work</div>
+  </div>
 </div>
 
 <!-- ABOUT -->
@@ -607,12 +638,10 @@
     <!-- Landscaping & Decorating - with gardening tools icon -->
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <!-- Shovel/spade blade -->
         <path d="M12 2v6" stroke="currentColor" stroke-linecap="round"/>
         <path d="M12 8c-3 0-5 2-5 5v7h10v-7c0-3-2-5-5-5z" stroke="currentColor" fill="none"/>
         <path d="M8 15h8" stroke="currentColor" stroke-linecap="round"/>
         <path d="M10 19l2-3 2 3" stroke="currentColor" stroke-linecap="round" fill="none"/>
-        <!-- Small leaf -->
         <path d="M19 4c-1.5 0-3 1-3 2.5 0 1.5 1.5 2.5 3 2.5s3-1 3-2.5c0-1.5-1.5-2.5-3-2.5z" stroke="currentColor" fill="none"/>
       </svg>
       <div class="service-name">Landscaping & Decorating</div>
@@ -676,7 +705,7 @@
   </div>
 </section>
 
-<!-- ★ CUSTOMER REVIEWS ★ -->
+<!-- CUSTOMER REVIEWS -->
 <section id="reviews">
   <div class="reviews-header reveal">
     <div class="section-eyebrow">Customer Reviews</div>
@@ -742,13 +771,13 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT - WITH MAILTO FUNCTIONALITY -->
 <section id="contact">
   <div class="section-eyebrow reveal">Get in Touch</div>
   <h2 class="section-title reveal">Request a <em>Quote</em></h2>
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <p>Whether you have a query or are ready to start your project, our team is ready to help. Call, email, or fill in the form and we'll get back to you promptly.</p>
+      <p>Fill in the form below and click "Send Message" to open your email app with all your details pre-filled. Just review and send!</p>
       <div class="contact-items">
         <div class="contact-item">
           <div class="contact-icon">
@@ -784,28 +813,30 @@
         </div>
       </div>
     </div>
-    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+
+    <!-- Mailto Form - Opens email app with pre-filled data -->
+    <form class="contact-form reveal" id="quoteForm" onsubmit="sendEmailWithData(event)">
       <div class="form-row">
         <div class="form-group">
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" placeholder="John" required>
+          <label for="fname">First Name *</label>
+          <input type="text" id="fname" name="fname" placeholder="John" required>
         </div>
         <div class="form-group">
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" placeholder="Smith" required>
+          <label for="lname">Last Name *</label>
+          <input type="text" id="lname" name="lname" placeholder="Smith" required>
         </div>
       </div>
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="john@example.com" required>
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required>
       </div>
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="07700 000000">
+        <input type="tel" id="phone" name="phone" placeholder="07700 000000">
       </div>
       <div class="form-group">
         <label for="service">Service Required</label>
-        <select id="service">
+        <select id="service" name="service">
           <option value="">Select a service…</option>
           <option>Extensions</option>
           <option>Roofing</option>
@@ -819,8 +850,8 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" placeholder="Tell us about your project…" required></textarea>
+        <label for="message">Message / Project Details *</label>
+        <textarea id="message" name="message" placeholder="Tell us about your project…" required></textarea>
       </div>
       <button type="submit" class="btn-submit">Send Message</button>
     </form>
@@ -890,7 +921,7 @@
   function closePhonePopup() { document.getElementById('phonePopup').classList.remove('open'); }
   function closePhonePopupOutside(e) { if (e.target === document.getElementById('phonePopup')) closePhonePopup(); }
 
-  // Modern hamburger toggle
+  // Mobile menu
   function toggleMenu() {
     const hamburger = document.getElementById('hamburgerBtn');
     const menu = document.getElementById('mob-menu');
@@ -912,14 +943,91 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Contact form
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = 'Sent! ✓';
+  // ANIMATED COUNTERS
+  function animateCounter(counterElement) {
+    const target = parseInt(counterElement.getAttribute('data-target'));
+    let current = 0;
+    const increment = target / 50;
+    const updateCounter = () => {
+      current += increment;
+      if (current < target) {
+        counterElement.innerText = Math.floor(current);
+        requestAnimationFrame(updateCounter);
+      } else {
+        counterElement.innerText = target;
+      }
+    };
+    updateCounter();
+  }
+
+  // Counter observer - starts counting when stats section comes into view
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('.counter');
+        counters.forEach(counter => animateCounter(counter));
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsStrip = document.querySelector('.stats-strip');
+  if (statsStrip) counterObserver.observe(statsStrip);
+
+  // MAILTO FUNCTION - Captures form data and opens email app
+  function sendEmailWithData(event) {
+    event.preventDefault();
+    
+    // Get form values
+    const firstName = document.getElementById('fname').value;
+    const lastName = document.getElementById('lname').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value;
+    
+    // Build email body
+    const subject = `Quote Request - ${firstName} ${lastName}`;
+    
+    const body = `========================================
+QUOTE REQUEST - M CONSTRUCTION UK
+========================================
+
+CUSTOMER DETAILS:
+-----------------
+Full Name: ${firstName} ${lastName}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+
+PROJECT DETAILS:
+----------------
+Service Required: ${service || 'Not specified'}
+
+Message:
+${message}
+
+----------------------------------------
+Please contact me to discuss this project.
+Thank you!
+----------------------------------------`;
+    
+    // Encode for URL
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    
+    // Create mailto link and open
+    const mailtoLink = `mailto:mconstructionuk@aol.com?subject=${encodedSubject}&body=${encodedBody}`;
+    window.location.href = mailtoLink;
+    
+    // Show feedback
+    const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Opening Email... ✓';
     btn.style.background = '#4CAF50';
-    btn.style.color = '#fff';
-    setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.style.color = ''; }, 3000);
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+    }, 3000);
   }
 </script>
 </body>
