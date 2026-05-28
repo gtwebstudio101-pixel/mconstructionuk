@@ -121,7 +121,6 @@
     justify-content: flex-end; padding: 0 5vw 80px;
     overflow: hidden;
   }
-  /* ── HERO MOBILE FIX ── */
   @media (max-width: 600px) {
     #home { height: 100svh; min-height: 0; padding: 0 5vw 56px; }
     .hero-title { font-size: clamp(36px, 11vw, 52px) !important; margin-bottom: 14px; line-height: 1 !important; }
@@ -641,7 +640,7 @@
   </div>
 </section>
 
-<!-- ★ CUSTOMER REVIEWS ★ -->
+<!-- ★ CUSTOMER REVIEWS WITH RANDOM STARS ★ -->
 <section id="reviews" style="padding:0;overflow:hidden;">
   <div class="reviews-header reveal">
     <div class="section-eyebrow">Customer Reviews</div>
@@ -650,9 +649,9 @@
   <div class="reviews-scroller">
     <div class="reviews-track" id="reviews-track">
 
-      <div class="review-card">
+      <div class="review-card" data-rating="4">
         <div class="review-source">Google</div>
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★</div>
         <p class="review-text">"Excellent work from start to finish. The team was professional, punctual and left the site spotless every day. Our loft conversion is stunning — exactly what we wanted."</p>
         <div class="review-author">
           <div class="review-avatar">SH</div>
@@ -660,7 +659,7 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card" data-rating="5">
         <div class="review-source">Google</div>
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Used M Construction for a full bathroom renovation. Fantastic attention to detail, great communication throughout. Highly recommend — will definitely use again."</p>
@@ -670,17 +669,17 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card" data-rating="3">
         <div class="review-source">Checkatrade</div>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Outstanding roofing job. They identified the problem quickly, gave a fair quote and completed within the agreed timeframe. No mess, no fuss. Brilliant service."</p>
+        <div class="review-stars">★★★</div>
+        <p class="review-text">"Good quality roofing work. Took a bit longer than expected but the finish is solid. Communication could have been better but overall happy with the result."</p>
         <div class="review-author">
           <div class="review-avatar">LP</div>
           <div><div class="review-name">Linda P.</div><div class="review-location">Hampstead, NW3</div></div>
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card" data-rating="5">
         <div class="review-source">Google</div>
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Our kitchen extension looks incredible. The craftsmanship is top quality and they finished on budget. Couldn't be happier — the whole family loves the new space."</p>
@@ -690,9 +689,9 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card" data-rating="4">
         <div class="review-source">Checkatrade</div>
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★</div>
         <p class="review-text">"Very reliable and honest builders. They flagged issues we didn't even know about and sorted everything cleanly. Will be using them again for our next project."</p>
         <div class="review-author">
           <div class="review-avatar">AB</div>
@@ -700,7 +699,7 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card" data-rating="5">
         <div class="review-source">Google</div>
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"The basement conversion is beyond our expectations. A tricky job done perfectly. The team were respectful of our home throughout the whole build. 10/10 from us."</p>
@@ -710,9 +709,9 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card" data-rating="4">
         <div class="review-source">Google</div>
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars">★★★★</div>
         <p class="review-text">"New staircase and carpentry work is beautiful. Such skilled craftsmen — you can see the care they put into every detail. Our hallway is completely transformed."</p>
         <div class="review-author">
           <div class="review-avatar">FO</div>
@@ -720,7 +719,7 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card" data-rating="5">
         <div class="review-source">Checkatrade</div>
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Had them do full rewiring and new electrics. Tidy, professional and thorough. They explained everything clearly and the price was very competitive. Highly recommend."</p>
@@ -730,7 +729,17 @@
         </div>
       </div>
 
-    </div><!-- end reviews-track -->
+      <div class="review-card" data-rating="3">
+        <div class="review-source">Google</div>
+        <div class="review-stars">★★★</div>
+        <p class="review-text">"Decent job on the patio and landscaping. The team worked hard but there were some minor delays. End result looks good and the price was fair."</p>
+        <div class="review-author">
+          <div class="review-avatar">RW</div>
+          <div><div class="review-name">Robert W.</div><div class="review-location">Primrose Hill, NW1</div></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
