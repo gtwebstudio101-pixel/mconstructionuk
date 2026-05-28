@@ -77,8 +77,44 @@
   .nav-phone:hover { background: rgba(26, 58, 92, 0.2); }
   .nav-phone svg { width: 20px; height: 20px; stroke: var(--logo-navy); fill: none; stroke-width: 2; }
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-  .hamburger span { display: block; width: 26px; height: 2px; background: var(--logo-navy); transition: 0.3s; }
+  /* ── MODERN HAMBURGER ── */
+  .hamburger {
+    display: none;
+    width: 28px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 101;
+  }
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--logo-navy);
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .hamburger span:nth-child(1) { top: 0; }
+  .hamburger span:nth-child(2) { top: 9px; }
+  .hamburger span:nth-child(3) { top: 18px; }
+  .hamburger.active span:nth-child(1) {
+    top: 9px;
+    transform: rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  .hamburger.active span:nth-child(3) {
+    top: 9px;
+    transform: rotate(-45deg);
+  }
 
   /* ── PHONE POPUP ── */
   .phone-popup {
@@ -291,13 +327,53 @@
 
   /* ── GALLERY TEASER ── */
   #gallery-teaser { background: var(--dark); }
-  .gallery-teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 50px; }
-  .gallery-teaser-item { aspect-ratio: 1; overflow: hidden; position: relative; }
-  .gallery-teaser-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-  .gallery-teaser-item:hover img { transform: scale(1.08); }
-  .gallery-teaser-item::after { content: ''; position: absolute; inset: 0; background: rgba(13,13,13,0); transition: background 0.3s; }
-  .gallery-teaser-item:hover::after { background: rgba(201,168,76,0.1); }
-  .gallery-link-wrap { text-align: center; margin-top: 40px; }
+  .gallery-showcase {
+    position: relative;
+    margin-top: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .gallery-showcase img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .gallery-showcase:hover img {
+    transform: scale(1.03);
+  }
+  .gallery-showcase-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 60px 5vw;
+  }
+  .gallery-showcase-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .gallery-showcase-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .gallery-showcase-title em { color: var(--gold); font-style: normal; }
 
   /* ── REVIEWS ── */
   #reviews { background: var(--dark2); overflow: hidden; padding: 80px 0; }
@@ -379,22 +455,56 @@
 
   /* ── MOBILE ── */
   @media (max-width: 900px) {
-    .nav-links, .nav-cta { display: none; }
-    .hamburger { display: flex; }
+    .nav-links, .nav-cta, .nav-phone { display: none; }
+    .hamburger { display: block; }
     .stats-strip { grid-template-columns: repeat(2, 1fr); }
     .about-grid, .why-inner, .contact-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
     .services-grid { grid-template-columns: 1fr; gap: 1px; }
-    .gallery-teaser-grid { grid-template-columns: repeat(2, 1fr); }
     .form-row { grid-template-columns: 1fr; }
     .about-badge { bottom: 16px; right: 16px; }
     .why-image { order: -1; }
     footer .footer-grid { grid-template-columns: 1fr 1fr; }
     .reviews-track { animation-duration: 28s; }
+    .gallery-showcase img { max-height: 350px; }
   }
   @media (max-width: 520px) {
     .stats-strip { grid-template-columns: repeat(2, 1fr); }
-    .gallery-teaser-grid { grid-template-columns: 1fr; }
     footer .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── MOBILE HERO CENTER FIX ── */
+  @media (max-width: 600px) {
+    #home {
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+      padding: 0 6vw !important;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 100% !important;
+    }
+    .hero-eyebrow {
+      justify-content: center;
+    }
+    .hero-eyebrow::before {
+      display: none;
+    }
+    .hero-body {
+      max-width: 100% !important;
+    }
+    .hero-actions {
+      justify-content: center;
+      width: 100%;
+    }
+    .hero-dots {
+      left: 50% !important;
+      right: auto !important;
+      transform: translateX(-50%);
+    }
   }
 
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -404,7 +514,7 @@
 <body>
 
 <!-- NAV -->
-<nav id="navbar">
+<<nav id="navbar">
   <a class="nav-logo" href="#home">
     <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/40ee65383fe7af76d80338c3776cdab6c57e0acf/logo-removebg-preview.png" alt="M Construction UK Ltd">
   </a>
@@ -423,9 +533,11 @@
       </svg>
     </div>
   </div>
-  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" id="hamburgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- PHONE POPUP -->
@@ -621,26 +733,23 @@
   </div>
 </section>
 
-<!-- GALLERY TEASER -->
+<!-- GALLERY TEASER — SINGLE IMAGE -->
 <section id="gallery-teaser">
   <div class="reveal">
     <div class="section-eyebrow">Our Work</div>
     <h2 class="section-title">Recent <em>Projects</em></h2>
   </div>
-  <div class="gallery-teaser-grid reveal">
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true"  alt="Project 1" loading="lazy"></div>
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner2.jpg?raw=true" alt="Project 2" loading="lazy"></div>
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner3.jpg?raw=true" alt="Project 3" loading="lazy"></div>
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner4.jpg?raw=true" alt="Project 4" loading="lazy"></div>
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/index_img/3.jpg?raw=true"           alt="Project 5" loading="lazy"></div>
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true"  alt="Project 6" loading="lazy" style="filter:brightness(0.8) contrast(1.1)"></div>
-  </div>
-  <div class="gallery-link-wrap reveal" style="margin-top:40px">
-    <a class="btn-primary" href="graller.html">View Full Gallery</a>
+  <div class="gallery-showcase reveal">
+    <img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true" alt="M Construction UK Portfolio" loading="lazy">
+    <div class="gallery-showcase-overlay">
+      <div class="gallery-showcase-label">Portfolio</div>
+      <div class="gallery-showcase-title">See Our <em>Work</em></div>
+      <a class="btn-primary" href="graller.html">View Full Gallery</a>
+    </div>
   </div>
 </section>
 
-<!-- ★ CUSTOMER REVIEWS WITH RANDOM STARS ★ -->
+<!-- ★ CUSTOMER REVIEWS ★ -->
 <section id="reviews" style="padding:0;overflow:hidden;">
   <div class="reviews-header reveal">
     <div class="section-eyebrow">Customer Reviews</div>
@@ -829,7 +938,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<<footer>
   <div class="footer-grid">
     <div>
       <div class="footer-brand-name">M Construction UK Ltd</div>
@@ -890,12 +999,17 @@
   function closePhonePopup() { document.getElementById('phonePopup').classList.remove('open'); }
   function closePhonePopupOutside(e) { if (e.target === document.getElementById('phonePopup')) closePhonePopup(); }
 
-  // Mobile menu
+  // Modern hamburger toggle
   function toggleMenu() {
-    const m = document.getElementById('mob-menu');
-    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+    const hamburger = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('mob-menu');
+    hamburger.classList.toggle('active');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
   }
-  function closeMenu() { document.getElementById('mob-menu').style.display = 'none'; }
+  function closeMenu() {
+    document.getElementById('hamburgerBtn').classList.remove('active');
+    document.getElementById('mob-menu').style.display = 'none';
+  }
 
   // Reviews — duplicate cards for seamless infinite loop
   const track = document.getElementById('reviews-track');
