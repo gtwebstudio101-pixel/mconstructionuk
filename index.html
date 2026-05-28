@@ -300,9 +300,9 @@
   .service-card:hover .service-icon { color: var(--gold-light); }
   .service-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 12px; letter-spacing: 0.03em; }
   .service-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); margin-bottom: 16px; }
-  .service-list { list-style: none; }
-  .service-list li { font-size: 13px; color: rgba(232,228,220,0.5); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; gap: 8px; }
-  .service-list li::before { content: '—'; color: var(--gold); font-size: 10px; }
+  .service-list { list-style: none; margin-top: 12px; }
+  .service-list li { font-size: 13px; color: rgba(232,228,220,0.6); padding: 5px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .service-list li::before { content: '✓'; color: var(--gold); font-size: 12px; font-weight: bold; }
 
   /* ── WHY US ── */
   #why { background: var(--dark2); }
@@ -415,6 +415,7 @@
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -535,7 +536,7 @@
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES - WITH DETAILED CONTENT -->
 <section id="services">
   <div class="services-intro reveal">
     <div class="section-eyebrow">What We Do</div>
@@ -543,52 +544,89 @@
     <p>We specialise in all building projects, offering a complete package for any construction work in your home or workplace at highly competitive rates.</p>
   </div>
   <div class="services-grid">
+    <!-- Extensions -->
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
       <div class="service-name">Extensions</div>
-      <p class="service-desc">House extensions, loft conversions and home improvement projects designed on time and on budget — whatever the size or budget.</p>
+      <p class="service-desc">We provide a design service for all home improvement projects, regardless of size or budget. Whether it's a house extension, loft conversion, or renovation, we deliver cost-effective solutions on time and on budget.</p>
     </div>
+
+    <!-- Roofing -->
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <div class="service-name">Roofing</div>
-      <p class="service-desc">All roofing work carried out with minimal disruption and backed by an insurance-backed guarantee.</p>
+      <p class="service-desc">We complete all work on time with minimal disruption. Every job carries an insurance-backed guarantee for your peace of mind.</p>
       <ul class="service-list">
-        <li>Commercial & Domestic Roofing</li>
-        <li>Flat Roof Repairs & Felt Roofing</li>
-        <li>Re-Roofs & Roof Conversions</li>
-        <li>Leadwork & Storm Damage</li>
+        <li>Commercial Roofing</li>
+        <li>Domestic Roofing</li>
+        <li>Felt Roofing</li>
+        <li>Flat Roof Repairs</li>
+        <li>Leadwork</li>
+        <li>Re-Roofs</li>
+        <li>Roof Conversions</li>
+        <li>Roof Renovation</li>
+        <li>Roof Tiling</li>
+        <li>Storm Damage</li>
       </ul>
     </div>
+
+    <!-- Basements -->
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3h-2a2 2 0 0 0-2 2v2h6V5a2 2 0 0 0-2-2z"/><path d="M8 3H6a2 2 0 0 0-2 2v2h6V5a2 2 0 0 0-2-2z"/></svg>
       <div class="service-name">Basements</div>
-      <p class="service-desc">Converting your basement into habitable space adds real value to your home. We assess, design and build from existing cellars or new foundations.</p>
+      <p class="service-desc">Basement conversions add value and create new living space. We assess water tables, substrate, and intended use to recommend the best system. We can transform an existing cellar or build entirely new space from existing foundations, with underpinning inspected by building control.</p>
     </div>
+
+    <!-- Bathrooms & Kitchens -->
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"/><path d="M6 8v12"/><path d="M18 8v12"/><path d="M6 20h12"/></svg>
       <div class="service-name">Bathrooms & Kitchens</div>
-      <p class="service-desc">Luxury bathroom design and installation. Our trusted team handles your renovation from start to finish, with CORGI-registered gas work.</p>
+      <p class="service-desc">We specialise in luxury bathroom and kitchen design and installation across London. Our experienced team handles every renovation from start to finish.</p>
+      <p class="service-desc" style="margin-top: 12px;"><strong>Gas Work:</strong> All gas work must by law be carried out by a CORGI-registered installer. We are fully registered with the Council for Registered Gas Installers, the body authorised by the Health & Safety Executive.</p>
+      <ul class="service-list">
+        <li>Plumbing</li>
+        <li>CORGI-registered Gas Work</li>
+      </ul>
     </div>
+
+    <!-- Electrics -->
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       <div class="service-name">Electrics</div>
-      <p class="service-desc">Domestic, commercial and industrial electrical installations.</p>
+      <p class="service-desc">Full electrical services for domestic, commercial, and industrial properties.</p>
       <ul class="service-list">
-        <li>House Rewires & Sockets</li>
-        <li>Home Entertainment Systems</li>
-        <li>Security & Alarm Systems</li>
-        <li>Automatic Gates & Satellite</li>
+        <li>Domestic electrician services such as house rewires and adding electrical sockets, lighting</li>
+        <li>Large scale industrial & commercial installations</li>
+        <li>Home Music Entertainment Systems</li>
+        <li>Security Systems audio / video alarms</li>
+        <li>Automatic Gates / Doors</li>
+        <li>Satellite Aerial Installation</li>
       </ul>
     </div>
+
+    <!-- Landscaping & Decorating - with gardening tools icon -->
     <div class="service-card reveal">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <!-- Shovel/spade blade -->
+        <path d="M12 2v6" stroke="currentColor" stroke-linecap="round"/>
+        <path d="M12 8c-3 0-5 2-5 5v7h10v-7c0-3-2-5-5-5z" stroke="currentColor" fill="none"/>
+        <path d="M8 15h8" stroke="currentColor" stroke-linecap="round"/>
+        <path d="M10 19l2-3 2 3" stroke="currentColor" stroke-linecap="round" fill="none"/>
+        <!-- Small leaf -->
+        <path d="M19 4c-1.5 0-3 1-3 2.5 0 1.5 1.5 2.5 3 2.5s3-1 3-2.5c0-1.5-1.5-2.5-3-2.5z" stroke="currentColor" fill="none"/>
+      </svg>
       <div class="service-name">Landscaping & Decorating</div>
-      <p class="service-desc">Complete exterior and interior finishing — gardens, driveways, and all aspects of painting and decorating.</p>
+      <p class="service-desc">Complete exterior and interior finishing including gardens, driveways, painting, and decorating.</p>
       <ul class="service-list">
-        <li>Fencing, Walling & Paving</li>
-        <li>Decking & Land Drainage</li>
-        <li>Interior & Exterior Decorating</li>
-        <li>Paperhanging & House Painting</li>
+        <li>Fencing, Walling & Paving (all types)</li>
+        <li>Land drainage</li>
+        <li>Decking</li>
+        <li>All aspects of painting & decorating</li>
+        <li>Paperhanging</li>
+        <li>House painting</li>
+        <li>Domestic and commercial work</li>
+        <li>Interior decorating</li>
+        <li>Exterior decorating</li>
       </ul>
     </div>
   </div>
@@ -639,15 +677,14 @@
 </section>
 
 <!-- ★ CUSTOMER REVIEWS ★ -->
-<section id="reviews" style="padding:0;overflow:hidden;">
+<section id="reviews">
   <div class="reviews-header reveal">
     <div class="section-eyebrow">Customer Reviews</div>
     <h2 class="section-title">What Our <em>Clients Say</em></h2>
   </div>
   <div class="reviews-scroller">
     <div class="reviews-track" id="reviews-track">
-
-      <div class="review-card" data-rating="4">
+      <div class="review-card">
         <div class="review-source">Google</div>
         <div class="review-stars">★★★★</div>
         <p class="review-text">"Excellent work from start to finish. The team was professional, punctual and left the site spotless every day. Our loft conversion is stunning — exactly what we wanted."</p>
@@ -656,8 +693,7 @@
           <div><div class="review-name">Sarah H.</div><div class="review-location">St John's Wood, NW8</div></div>
         </div>
       </div>
-
-      <div class="review-card" data-rating="5">
+      <div class="review-card">
         <div class="review-source">Google</div>
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Used M Construction for a full bathroom renovation. Fantastic attention to detail, great communication throughout. Highly recommend — will definitely use again."</p>
@@ -666,8 +702,7 @@
           <div><div class="review-name">James M.</div><div class="review-location">Maida Vale, W9</div></div>
         </div>
       </div>
-
-      <div class="review-card" data-rating="3">
+      <div class="review-card">
         <div class="review-source">Checkatrade</div>
         <div class="review-stars">★★★</div>
         <p class="review-text">"Good quality roofing work. Took a bit longer than expected but the finish is solid. Communication could have been better but overall happy with the result."</p>
@@ -676,8 +711,7 @@
           <div><div class="review-name">Linda P.</div><div class="review-location">Hampstead, NW3</div></div>
         </div>
       </div>
-
-      <div class="review-card" data-rating="5">
+      <div class="review-card">
         <div class="review-source">Google</div>
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Our kitchen extension looks incredible. The craftsmanship is top quality and they finished on budget. Couldn't be happier — the whole family loves the new space."</p>
@@ -686,8 +720,7 @@
           <div><div class="review-name">Tom R.</div><div class="review-location">Kilburn, NW6</div></div>
         </div>
       </div>
-
-      <div class="review-card" data-rating="4">
+      <div class="review-card">
         <div class="review-source">Checkatrade</div>
         <div class="review-stars">★★★★</div>
         <p class="review-text">"Very reliable and honest builders. They flagged issues we didn't even know about and sorted everything cleanly. Will be using them again for our next project."</p>
@@ -696,8 +729,7 @@
           <div><div class="review-name">Anita B.</div><div class="review-location">Regent's Park, NW1</div></div>
         </div>
       </div>
-
-      <div class="review-card" data-rating="5">
+      <div class="review-card">
         <div class="review-source">Google</div>
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"The basement conversion is beyond our expectations. A tricky job done perfectly. The team were respectful of our home throughout the whole build. 10/10 from us."</p>
@@ -706,37 +738,6 @@
           <div><div class="review-name">David C.</div><div class="review-location">Belsize Park, NW3</div></div>
         </div>
       </div>
-
-      <div class="review-card" data-rating="4">
-        <div class="review-source">Google</div>
-        <div class="review-stars">★★★★</div>
-        <p class="review-text">"New staircase and carpentry work is beautiful. Such skilled craftsmen — you can see the care they put into every detail. Our hallway is completely transformed."</p>
-        <div class="review-author">
-          <div class="review-avatar">FO</div>
-          <div><div class="review-name">Fatima O.</div><div class="review-location">Swiss Cottage, NW3</div></div>
-        </div>
-      </div>
-
-      <div class="review-card" data-rating="5">
-        <div class="review-source">Checkatrade</div>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Had them do full rewiring and new electrics. Tidy, professional and thorough. They explained everything clearly and the price was very competitive. Highly recommend."</p>
-        <div class="review-author">
-          <div class="review-avatar">MK</div>
-          <div><div class="review-name">Mike K.</div><div class="review-location">Marylebone, W1</div></div>
-        </div>
-      </div>
-
-      <div class="review-card" data-rating="3">
-        <div class="review-source">Google</div>
-        <div class="review-stars">★★★</div>
-        <p class="review-text">"Decent job on the patio and landscaping. The team worked hard but there were some minor delays. End result looks good and the price was fair."</p>
-        <div class="review-author">
-          <div class="review-avatar">RW</div>
-          <div><div class="review-name">Robert W.</div><div class="review-location">Primrose Hill, NW1</div></div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -851,6 +852,7 @@
         <li><a href="#services">Basements</a></li>
         <li><a href="#services">Bathrooms</a></li>
         <li><a href="#services">Electrics</a></li>
+        <li><a href="#services">Landscaping</a></li>
       </ul>
     </div>
     <div>
