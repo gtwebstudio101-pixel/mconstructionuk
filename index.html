@@ -77,7 +77,6 @@
   .nav-phone:hover { background: rgba(26, 58, 92, 0.2); }
   .nav-phone svg { width: 20px; height: 20px; stroke: var(--logo-navy); fill: none; stroke-width: 2; }
 
-  /* ── MODERN HAMBURGER ── */
   .hamburger {
     display: none;
     width: 28px;
@@ -96,25 +95,15 @@
     width: 100%;
     background: var(--logo-navy);
     border-radius: 1px;
-    opacity: 1;
     left: 0;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .hamburger span:nth-child(1) { top: 0; }
   .hamburger span:nth-child(2) { top: 9px; }
   .hamburger span:nth-child(3) { top: 18px; }
-  .hamburger.active span:nth-child(1) {
-    top: 9px;
-    transform: rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  .hamburger.active span:nth-child(3) {
-    top: 9px;
-    transform: rotate(-45deg);
-  }
+  .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+  .hamburger.active span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
 
   /* ── PHONE POPUP ── */
   .phone-popup {
@@ -158,13 +147,15 @@
     overflow: hidden;
   }
   @media (max-width: 600px) {
-    #home { height: 100svh; min-height: 0; padding: 0 5vw 56px; }
+    #home { height: 100svh; min-height: 0; padding: 0 5vw 56px; justify-content: center !important; align-items: center !important; text-align: center !important; }
     .hero-title { font-size: clamp(36px, 11vw, 52px) !important; margin-bottom: 14px; line-height: 1 !important; }
-    .hero-body { font-size: 13px !important; margin-bottom: 24px; }
-    .hero-eyebrow { margin-bottom: 12px; font-size: 11px !important; }
-    .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+    .hero-body { font-size: 13px !important; margin-bottom: 24px; max-width: 100% !important; }
+    .hero-eyebrow { margin-bottom: 12px; font-size: 11px !important; justify-content: center; }
+    .hero-eyebrow::before { display: none; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; justify-content: center; width: 100%; }
     .btn-primary, .btn-outline { text-align: center; padding: 14px 20px; }
-    .hero-dots { bottom: 18px; }
+    .hero-dots { bottom: 18px; left: 50% !important; right: auto !important; transform: translateX(-50%); }
+    .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 100% !important; }
   }
 
   .hero-slides { position: absolute; inset: 0; }
@@ -325,56 +316,6 @@
   .why-item-title { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 6px; letter-spacing: 0.04em; }
   .why-item-body { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
 
-  /* ── GALLERY TEASER ── */
-  #gallery-teaser { background: var(--dark); }
-  .gallery-showcase {
-    position: relative;
-    margin-top: 50px;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .gallery-showcase img {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.8s ease;
-  }
-  .gallery-showcase:hover img {
-    transform: scale(1.03);
-  }
-  .gallery-showcase-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 60px 5vw;
-  }
-  .gallery-showcase-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-  .gallery-showcase-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 800;
-    text-transform: uppercase;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 32px;
-    text-align: center;
-  }
-  .gallery-showcase-title em { color: var(--gold); font-style: normal; }
-
   /* ── REVIEWS ── */
   #reviews { background: var(--dark2); overflow: hidden; padding: 80px 0; }
   .reviews-header { padding: 0 5vw 48px; }
@@ -465,46 +406,10 @@
     .why-image { order: -1; }
     footer .footer-grid { grid-template-columns: 1fr 1fr; }
     .reviews-track { animation-duration: 28s; }
-    .gallery-showcase img { max-height: 350px; }
   }
   @media (max-width: 520px) {
     .stats-strip { grid-template-columns: repeat(2, 1fr); }
     footer .footer-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ── MOBILE HERO CENTER FIX ── */
-  @media (max-width: 600px) {
-    #home {
-      justify-content: center !important;
-      align-items: center !important;
-      text-align: center !important;
-      padding: 0 6vw !important;
-    }
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      max-width: 100% !important;
-    }
-    .hero-eyebrow {
-      justify-content: center;
-    }
-    .hero-eyebrow::before {
-      display: none;
-    }
-    .hero-body {
-      max-width: 100% !important;
-    }
-    .hero-actions {
-      justify-content: center;
-      width: 100%;
-    }
-    .hero-dots {
-      left: 50% !important;
-      right: auto !important;
-      transform: translateX(-50%);
-    }
   }
 
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -514,7 +419,7 @@
 <body>
 
 <!-- NAV -->
-<<nav id="navbar">
+<nav id="navbar">
   <a class="nav-logo" href="#home">
     <img src="https://raw.githubusercontent.com/gtwebstudio101-pixel/mconstructionuk/40ee65383fe7af76d80338c3776cdab6c57e0acf/logo-removebg-preview.png" alt="M Construction UK Ltd">
   </a>
@@ -733,22 +638,6 @@
   </div>
 </section>
 
-<!-- GALLERY TEASER — SINGLE IMAGE -->
-<section id="gallery-teaser">
-  <div class="reveal">
-    <div class="section-eyebrow">Our Work</div>
-    <h2 class="section-title">Recent <em>Projects</em></h2>
-  </div>
-  <div class="gallery-showcase reveal">
-    <img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true" alt="M Construction UK Portfolio" loading="lazy">
-    <div class="gallery-showcase-overlay">
-      <div class="gallery-showcase-label">Portfolio</div>
-      <div class="gallery-showcase-title">See Our <em>Work</em></div>
-      <a class="btn-primary" href="graller.html">View Full Gallery</a>
-    </div>
-  </div>
-</section>
-
 <!-- ★ CUSTOMER REVIEWS ★ -->
 <section id="reviews" style="padding:0;overflow:hidden;">
   <div class="reviews-header reveal">
@@ -938,7 +827,7 @@
 </section>
 
 <!-- FOOTER -->
-<<footer>
+<footer>
   <div class="footer-grid">
     <div>
       <div class="footer-brand-name">M Construction UK Ltd</div>
