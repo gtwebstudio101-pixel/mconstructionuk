@@ -46,16 +46,8 @@
     transition: background 0.3s;
   }
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .nav-logo img {
-    height: 45px;
-    width: auto;
-    display: block;
-  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 45px; width: auto; display: block; }
 
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
@@ -76,107 +68,51 @@
   }
   .nav-cta:hover { background: var(--logo-blue); }
 
-  /* Phone button in nav */
   .nav-phone {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     background: rgba(26, 58, 92, 0.1);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-left: 10px;
+    border-radius: 50%; width: 40px; height: 40px;
+    cursor: pointer; transition: background 0.2s; margin-left: 10px;
   }
-  .nav-phone:hover {
-    background: rgba(26, 58, 92, 0.2);
-  }
-  .nav-phone svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--logo-navy);
-    fill: none;
-    stroke-width: 2;
-  }
+  .nav-phone:hover { background: rgba(26, 58, 92, 0.2); }
+  .nav-phone svg { width: 20px; height: 20px; stroke: var(--logo-navy); fill: none; stroke-width: 2; }
 
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
   .hamburger span { display: block; width: 26px; height: 2px; background: var(--logo-navy); transition: 0.3s; }
 
-  /* Phone popup modal */
+  /* ── PHONE POPUP ── */
   .phone-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); z-index: 1000;
+    align-items: center; justify-content: center;
   }
-  .phone-popup.open {
-    display: flex;
-  }
+  .phone-popup.open { display: flex; }
   .phone-popup-content {
-    background: var(--dark2);
-    border-radius: 12px;
-    padding: 24px;
-    width: 90%;
-    max-width: 320px;
-    text-align: center;
+    background: var(--dark2); border-radius: 12px; padding: 24px;
+    width: 90%; max-width: 320px; text-align: center;
     border: 1px solid rgba(201,168,76,0.3);
   }
   .phone-popup-content h3 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    color: var(--gold);
-    margin-bottom: 20px;
+    font-size: 20px; color: var(--gold); margin-bottom: 20px;
   }
   .phone-option {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 14px 20px;
-    margin: 10px 0;
-    background: var(--mid);
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--text);
-    font-size: 16px;
-    font-weight: 600;
-    transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 14px 20px; margin: 10px 0;
+    background: var(--mid); border-radius: 8px;
+    text-decoration: none; color: var(--text);
+    font-size: 16px; font-weight: 600; transition: background 0.2s;
   }
-  .phone-option:hover {
-    background: var(--gold);
-    color: var(--dark);
-  }
-  .phone-option svg {
-    width: 18px;
-    height: 18px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-  }
+  .phone-option:hover { background: var(--gold); color: var(--dark); }
+  .phone-option svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
   .phone-popup-close {
-    margin-top: 16px;
-    padding: 10px;
-    background: none;
-    border: 1px solid var(--muted);
-    border-radius: 8px;
-    color: var(--muted);
-    cursor: pointer;
-    width: 100%;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    transition: all 0.2s;
+    margin-top: 16px; padding: 10px;
+    background: none; border: 1px solid var(--muted); border-radius: 8px;
+    color: var(--muted); cursor: pointer; width: 100%;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 14px; transition: all 0.2s;
   }
-  .phone-popup-close:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
+  .phone-popup-close:hover { border-color: var(--gold); color: var(--gold); }
 
   /* ── HERO ── */
   #home {
@@ -185,10 +121,18 @@
     justify-content: flex-end; padding: 0 5vw 80px;
     overflow: hidden;
   }
-
-  .hero-slides {
-    position: absolute; inset: 0;
+  /* ── HERO MOBILE FIX ── */
+  @media (max-width: 600px) {
+    #home { height: 100svh; min-height: 0; padding: 0 5vw 56px; }
+    .hero-title { font-size: clamp(36px, 11vw, 52px) !important; margin-bottom: 14px; line-height: 1 !important; }
+    .hero-body { font-size: 13px !important; margin-bottom: 24px; }
+    .hero-eyebrow { margin-bottom: 12px; font-size: 11px !important; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+    .btn-primary, .btn-outline { text-align: center; padding: 14px 20px; }
+    .hero-dots { bottom: 18px; }
   }
+
+  .hero-slides { position: absolute; inset: 0; }
   .hero-slide {
     position: absolute; inset: 0;
     background-size: cover; background-position: center;
@@ -209,9 +153,7 @@
     margin-bottom: 20px;
     display: flex; align-items: center; gap: 14px;
   }
-  .hero-eyebrow::before {
-    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
-  }
+  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
 
   .hero-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -273,8 +215,7 @@
   .stat-item:last-child { border-right: none; }
   .stat-num {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 44px; font-weight: 800; color: var(--gold);
-    line-height: 1;
+    font-size: 44px; font-weight: 800; color: var(--gold); line-height: 1;
   }
   .stat-label {
     font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
@@ -291,153 +232,114 @@
     margin-bottom: 14px;
     display: flex; align-items: center; gap: 14px;
   }
-  .section-eyebrow::before {
-    content: ''; display: block; width: 30px; height: 1px; background: var(--gold);
-  }
+  .section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
 
   .section-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(36px, 5vw, 60px);
     font-weight: 800; text-transform: uppercase;
-    line-height: 1; color: #fff;
-    margin-bottom: 20px;
+    line-height: 1; color: #fff; margin-bottom: 20px;
   }
   .section-title em { color: var(--gold); font-style: normal; }
 
   /* ── ABOUT ── */
   #about { background: var(--dark2); }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center; margin-top: 60px;
-  }
-  .about-image-wrap {
-    position: relative;
-  }
-  .about-image-wrap img {
-    width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+  .about-image-wrap { position: relative; }
+  .about-image-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
   .about-badge {
     position: absolute; bottom: -20px; right: -20px;
-    width: 120px; height: 120px;
-    background: var(--gold);
+    width: 120px; height: 120px; background: var(--gold);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
   }
-  .about-badge-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 38px; font-weight: 800; color: var(--dark); line-height: 1;
-  }
-  .about-badge-text {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--dark); text-align: center; margin-top: 2px;
-  }
+  .about-badge-num { font-family: 'Barlow Condensed', sans-serif; font-size: 38px; font-weight: 800; color: var(--dark); line-height: 1; }
+  .about-badge-text { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); text-align: center; margin-top: 2px; }
   .about-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(232,228,220,0.7); margin-bottom: 24px; }
   .checklist { list-style: none; margin-bottom: 36px; display: flex; flex-direction: column; gap: 10px; }
-  .checklist li {
-    display: flex; align-items: flex-start; gap: 12px;
-    font-size: 14px; color: rgba(232,228,220,0.75);
-  }
-  .checklist li::before {
-    content: '✓'; color: var(--gold); font-weight: 700;
-    font-family: 'Barlow Condensed', sans-serif;
-    flex-shrink: 0; margin-top: 1px;
-  }
-  .insurance-row { display: flex; gap: 20px; margin-top: 10px; }
-  .ins-pill {
-    background: var(--mid); padding: 10px 18px;
-    font-size: 12px; font-weight: 500; letter-spacing: 0.05em;
-    color: var(--muted); border-left: 2px solid var(--gold);
-  }
+  .checklist li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: rgba(232,228,220,0.75); }
+  .checklist li::before { content: '✓'; color: var(--gold); font-weight: 700; font-family: 'Barlow Condensed', sans-serif; flex-shrink: 0; margin-top: 1px; }
+  .insurance-row { display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
+  .ins-pill { background: var(--mid); padding: 10px 18px; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; color: var(--muted); border-left: 2px solid var(--gold); }
 
   /* ── SERVICES ── */
   #services { background: var(--dark); }
   .services-intro { max-width: 580px; margin-bottom: 60px; }
   .services-intro p { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(232,228,220,0.6); margin-top: 16px; }
-
-  .services-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .service-card {
-    background: var(--dark2);
-    padding: 40px 36px;
-    position: relative; overflow: hidden;
-    transition: background 0.3s;
-    cursor: default;
-  }
-  .service-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0;
-    width: 0; height: 2px; background: var(--gold);
-    transition: width 0.4s ease;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); }
+  .service-card { background: var(--dark2); padding: 40px 36px; position: relative; overflow: hidden; transition: background 0.3s; cursor: default; }
+  .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s ease; }
   .service-card:hover { background: var(--dark3); }
   .service-card:hover::before { width: 100%; }
-
-  .service-icon {
-    width: 32px; height: 32px; margin-bottom: 20px; display: block;
-    color: var(--gold); transition: color 0.3s;
-  }
+  .service-icon { width: 32px; height: 32px; margin-bottom: 20px; display: block; color: var(--gold); transition: color 0.3s; }
   .service-card:hover .service-icon { color: var(--gold-light); }
-
-  .service-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px; font-weight: 700; text-transform: uppercase;
-    color: #fff; margin-bottom: 12px; letter-spacing: 0.03em;
-  }
+  .service-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 12px; letter-spacing: 0.03em; }
   .service-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); margin-bottom: 16px; }
   .service-list { list-style: none; }
-  .service-list li {
-    font-size: 13px; color: rgba(232,228,220,0.6);
-    padding: 5px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .service-list li::before {
-    content: '✓';
-    color: var(--gold);
-    font-size: 12px;
-    font-weight: bold;
-  }
+  .service-list li { font-size: 13px; color: rgba(232,228,220,0.5); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; gap: 8px; }
+  .service-list li::before { content: '—'; color: var(--gold); font-size: 10px; }
 
   /* ── WHY US ── */
   #why { background: var(--dark2); }
   .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .why-image { position: relative; }
-  .why-image img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; border-radius: 8px; }
+  .why-image img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+  .why-image-accent { position: absolute; top: -16px; left: -16px; width: 60%; height: 60%; border: 1px solid rgba(201,168,76,0.3); pointer-events: none; }
   .why-items { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
   .why-item { display: flex; gap: 20px; align-items: flex-start; }
-  .why-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px; font-weight: 800; letter-spacing: 0.1em;
-    color: var(--gold); min-width: 32px; padding-top: 2px;
-  }
-  .why-item-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px; font-weight: 700; text-transform: uppercase;
-    color: #fff; margin-bottom: 6px; letter-spacing: 0.04em;
-  }
+  .why-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.1em; color: var(--gold); min-width: 32px; padding-top: 2px; }
+  .why-item-title { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 6px; letter-spacing: 0.04em; }
   .why-item-body { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
 
   /* ── GALLERY TEASER ── */
   #gallery-teaser { background: var(--dark); }
-  .gallery-teaser-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 50px;
-  }
-  .gallery-teaser-item {
-    aspect-ratio: 1; overflow: hidden; position: relative;
-  }
-  .gallery-teaser-item img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease;
-  }
+  .gallery-teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 50px; }
+  .gallery-teaser-item { aspect-ratio: 1; overflow: hidden; position: relative; }
+  .gallery-teaser-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
   .gallery-teaser-item:hover img { transform: scale(1.08); }
-  .gallery-teaser-item::after {
-    content: ''; position: absolute; inset: 0;
-    background: rgba(13,13,13,0); transition: background 0.3s;
-  }
+  .gallery-teaser-item::after { content: ''; position: absolute; inset: 0; background: rgba(13,13,13,0); transition: background 0.3s; }
   .gallery-teaser-item:hover::after { background: rgba(201,168,76,0.1); }
   .gallery-link-wrap { text-align: center; margin-top: 40px; }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--dark2); overflow: hidden; padding: 80px 0; }
+  .reviews-header { padding: 0 5vw 48px; }
+  .reviews-scroller { overflow: hidden; position: relative; }
+  .reviews-scroller::before, .reviews-scroller::after {
+    content: ''; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none;
+  }
+  .reviews-scroller::before { left: 0; background: linear-gradient(to right, var(--dark2), transparent); }
+  .reviews-scroller::after  { right: 0; background: linear-gradient(to left,  var(--dark2), transparent); }
+  .reviews-track {
+    display: flex; gap: 20px; width: max-content;
+    animation: scroll-reviews 40s linear infinite;
+  }
+  .reviews-track:hover { animation-play-state: paused; }
+  @keyframes scroll-reviews {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .review-card {
+    background: var(--dark3); border: 1px solid rgba(255,255,255,0.07);
+    padding: 28px 28px 24px; width: 300px; flex-shrink: 0;
+    position: relative; transition: border-color 0.3s;
+  }
+  .review-card:hover { border-color: var(--gold); }
+  .review-stars { color: #F5A623; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px; }
+  .review-text { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(232,228,220,0.65); margin-bottom: 20px; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--dark); flex-shrink: 0;
+  }
+  .review-name { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text); }
+  .review-location { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .review-source {
+    position: absolute; top: 18px; right: 18px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    border: 1px solid rgba(255,255,255,0.1); padding: 3px 7px;
+  }
 
   /* ── CONTACT ── */
   #contact { background: var(--dark2); }
@@ -445,181 +347,50 @@
   .contact-info p { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(232,228,220,0.6); margin-bottom: 36px; }
   .contact-items { display: flex; flex-direction: column; gap: 24px; }
   .contact-item { display: flex; gap: 16px; align-items: flex-start; }
-  .contact-icon {
-    width: 44px; height: 44px; background: var(--mid);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; border-left: 2px solid var(--gold);
-  }
-  .contact-icon svg {
-    width: 18px; height: 18px;
-    stroke: var(--gold); fill: none;
-    stroke-width: 2;
-  }
-  .contact-item-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
-  }
+  .contact-icon { width: 44px; height: 44px; background: var(--mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-left: 2px solid var(--gold); }
+  .contact-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2; }
+  .contact-item-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
   .contact-item-value { font-size: 15px; color: var(--text); font-weight: 400; }
   .contact-item-value a { color: var(--text); text-decoration: none; }
   .contact-item-value a:hover { color: var(--gold); }
-
-  .address-map-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; color: var(--muted); text-decoration: none;
-    margin-top: 4px; transition: color 0.2s;
-  }
+  .address-map-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); text-decoration: none; margin-top: 4px; transition: color 0.2s; }
   .address-map-link:hover { color: var(--gold); }
-  .address-map-link svg {
-    width: 14px; height: 14px;
-    stroke: currentColor; fill: none;
-    stroke-width: 2;
-  }
-
-  /* Form styles */
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 16px;
-  }
-  .form-group label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    background: var(--mid);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    padding: 12px 16px;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-    border-radius: 6px;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    border-color: var(--gold);
-  }
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  .form-group select option {
-    background: var(--mid);
-  }
-
-  .quote-gmail-btn {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    background: var(--gold);
-    color: var(--dark);
-    padding: 16px 24px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .quote-gmail-btn:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-  }
-  .quote-box {
-    background: var(--mid);
-    padding: 32px;
-    border-radius: 12px;
-    border-left: 3px solid var(--gold);
-  }
-  .quote-box h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 24px;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-  .quote-box p {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 24px;
-    line-height: 1.6;
-  }
-  .simple-email-box {
-    background: var(--dark3);
-    padding: 24px;
-    border-radius: 12px;
-    text-align: center;
-  }
-  .simple-email-link {
-    color: var(--gold);
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    word-break: break-all;
-  }
-  .simple-email-link:hover {
-    text-decoration: underline;
-  }
+  .address-map-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group textarea, .form-group select { background: var(--mid); border: 1px solid rgba(255,255,255,0.08); color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--mid); }
+  .btn-submit { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); background: var(--gold); border: none; cursor: pointer; padding: 16px 36px; align-self: flex-start; transition: background 0.2s, transform 0.15s; }
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
 
   /* ── FOOTER ── */
-  footer {
-    background: #080808;
-    border-top: 1px solid rgba(201,168,76,0.15);
-    padding: 60px 5vw 32px;
-  }
+  footer { background: #080808; border-top: 1px solid rgba(201,168,76,0.15); padding: 60px 5vw 32px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-  .footer-brand-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 24px; font-weight: 800; color: var(--gold); margin-bottom: 12px;
-  }
+  .footer-brand-name { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: var(--gold); margin-bottom: 12px; }
   .footer-tagline { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.6; }
-  .footer-col-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 16px;
-  }
+  .footer-col-title { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
   .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--gold); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding-top: 24px; display: flex; justify-content: space-between;
-    font-size: 12px; color: rgba(138,133,122,0.5);
-  }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(138,133,122,0.5); flex-wrap: wrap; gap: 8px; }
 
   /* ── MOBILE ── */
   @media (max-width: 900px) {
     .nav-links, .nav-cta { display: none; }
     .hamburger { display: flex; }
     .stats-strip { grid-template-columns: repeat(2, 1fr); }
-    .about-grid, .services-grid, .why-inner, .contact-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-    .services-grid { gap: 1px; }
-    .services-grid { grid-template-columns: 1fr; }
+    .about-grid, .why-inner, .contact-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; gap: 1px; }
     .gallery-teaser-grid { grid-template-columns: repeat(2, 1fr); }
     .form-row { grid-template-columns: 1fr; }
     .about-badge { bottom: 16px; right: 16px; }
     .why-image { order: -1; }
     footer .footer-grid { grid-template-columns: 1fr 1fr; }
+    .reviews-track { animation-duration: 28s; }
   }
   @media (max-width: 520px) {
     .stats-strip { grid-template-columns: repeat(2, 1fr); }
@@ -627,7 +398,6 @@
     footer .footer-grid { grid-template-columns: 1fr; }
   }
 
-  /* scroll reveal */
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 </style>
@@ -646,7 +416,7 @@
     <li><a href="graller.html">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div style="display: flex; align-items: center;">
+  <div style="display:flex;align-items:center;">
     <a class="nav-cta" href="#contact">Free Quote</a>
     <div class="nav-phone" onclick="openPhonePopup()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -659,35 +429,31 @@
   </div>
 </nav>
 
-<!-- Phone number popup modal -->
+<!-- PHONE POPUP -->
 <div id="phonePopup" class="phone-popup" onclick="closePhonePopupOutside(event)">
   <div class="phone-popup-content">
     <h3>Call us</h3>
     <a href="tel:07980733770" class="phone-option">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       07980 733770
     </a>
     <a href="tel:02072249209" class="phone-option">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       0207 224 9209
     </a>
     <button class="phone-popup-close" onclick="closePhonePopup()">Cancel</button>
   </div>
 </div>
 
-<!-- Mobile menu overlay -->
+<!-- MOBILE MENU -->
 <div id="mob-menu" style="display:none;position:fixed;inset:0;background:rgba(245,242,236,0.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px;">
-  <a onclick="closeMenu()" href="#home" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:var(--logo-navy);text-decoration:none;">Home</a>
-  <a onclick="closeMenu()" href="#about" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:var(--logo-navy);text-decoration:none;">About</a>
-  <a onclick="closeMenu()" href="#services" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:var(--logo-navy);text-decoration:none;">Services</a>
-  <a onclick="closeMenu()" href="graller.html" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:var(--gold);text-decoration:none;">Gallery</a>
-  <a onclick="closeMenu()" href="#contact" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:var(--logo-navy);text-decoration:none;">Contact</a>
-  <a onclick="closeMenu()" href="#contact" style="background:var(--logo-navy);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:14px 40px;text-decoration:none;margin-top:8px;">Get a Quote</a>
-  <button onclick="closeMenu()" style="position:absolute;top:24px;right:5vw;background:none;border:none;color:var(--logo-navy);font-size:32px;cursor:pointer;">✕</button>
+  <a onclick="closeMenu()" href="#home"     style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#1a3a5c;text-decoration:none;">Home</a>
+  <a onclick="closeMenu()" href="#about"    style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#1a3a5c;text-decoration:none;">About</a>
+  <a onclick="closeMenu()" href="#services" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#1a3a5c;text-decoration:none;">Services</a>
+  <a onclick="closeMenu()" href="graller.html" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#C9A84C;text-decoration:none;">Gallery</a>
+  <a onclick="closeMenu()" href="#contact"  style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;text-transform:uppercase;color:#1a3a5c;text-decoration:none;">Contact</a>
+  <a onclick="closeMenu()" href="#contact"  style="background:#1a3a5c;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:14px 40px;text-decoration:none;margin-top:8px;">Get a Quote</a>
+  <button onclick="closeMenu()" style="position:absolute;top:24px;right:5vw;background:none;border:none;color:#1a3a5c;font-size:32px;cursor:pointer;">✕</button>
 </div>
 
 <!-- HERO -->
@@ -717,22 +483,10 @@
 
 <!-- STATS STRIP -->
 <div class="stats-strip">
-  <div class="stat-item">
-    <div class="stat-num">20+</div>
-    <div class="stat-label">Years Experience</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">500+</div>
-    <div class="stat-label">Projects Completed</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">£2M</div>
-    <div class="stat-label">Public Liability Cover</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Guaranteed Work</div>
-  </div>
+  <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Projects Completed</div></div>
+  <div class="stat-item"><div class="stat-num">£2M</div><div class="stat-label">Public Liability Cover</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Guaranteed Work</div></div>
 </div>
 
 <!-- ABOUT -->
@@ -790,20 +544,14 @@
       </ul>
     </div>
     <div class="service-card reveal">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3h-2a2 2 0 0 0-2 2v2h6V5a2 2 0 0 0-2-2z"/><path d="M8 3H6a2 2 0 0 0-2 2v2h6V5a2 2 0 0 0-2-2z"/></svg>
       <div class="service-name">Basements</div>
       <p class="service-desc">Converting your basement into habitable space adds real value to your home. We assess, design and build from existing cellars or new foundations.</p>
     </div>
     <div class="service-card reveal">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      <div class="service-name">Bathrooms</div>
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"/><path d="M6 8v12"/><path d="M18 8v12"/><path d="M6 20h12"/></svg>
+      <div class="service-name">Bathrooms & Kitchens</div>
       <p class="service-desc">Luxury bathroom design and installation. Our trusted team handles your renovation from start to finish, with CORGI-registered gas work.</p>
-      <ul class="service-list">
-        <li>Complete Bathroom Renovation</li>
-        <li>Wet Rooms & Walk-in Showers</li>
-        <li>Bespoke Vanity Units</li>
-        <li>Heated Flooring & Tiling</li>
-      </ul>
     </div>
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -818,41 +566,13 @@
     </div>
     <div class="service-card reveal">
       <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <div class="service-name">Landscaping</div>
-      <p class="service-desc">Complete exterior finishing — gardens, driveways, and outdoor spaces transformed to perfection.</p>
+      <div class="service-name">Landscaping & Decorating</div>
+      <p class="service-desc">Complete exterior and interior finishing — gardens, driveways, and all aspects of painting and decorating.</p>
       <ul class="service-list">
-        <li>Garden Design & Planting</li>
-        <li>Driveways & Patios</li>
-        <li>Fencing & Walling</li>
+        <li>Fencing, Walling & Paving</li>
         <li>Decking & Land Drainage</li>
-        <li>Paving & Turfing</li>
-      </ul>
-    </div>
-  </div>
-  <!-- Second row for Kitchens and Decorating -->
-  <div class="services-grid" style="margin-top: 1px;">
-    <div class="service-card reveal">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M12 2v20"/><circle cx="12" cy="12" r="10"/></svg>
-      <div class="service-name">Kitchens</div>
-      <p class="service-desc">Custom kitchen design, installation, and complete refurbishment. From modern to traditional styles, we bring your dream kitchen to life.</p>
-      <ul class="service-list">
-        <li>Bespoke Kitchen Design & Installation</li>
-        <li>Worktops & Cabinet Fitting</li>
-        <li>Appliance Installation</li>
-        <li>Kitchen Plumbing & Electrics</li>
-        <li>Splashbacks & Tiling</li>
-      </ul>
-    </div>
-    <div class="service-card reveal">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
-      <div class="service-name">Decorating</div>
-      <p class="service-desc">Professional interior and exterior painting and decorating services for homes and businesses.</p>
-      <ul class="service-list">
-        <li>Interior & Exterior Painting</li>
-        <li>Wallpaper Hanging</li>
-        <li>Feature Walls & Finishes</li>
-        <li>Spray Painting</li>
-        <li>Surface Preparation & Repairs</li>
+        <li>Interior & Exterior Decorating</li>
+        <li>Paperhanging & House Painting</li>
       </ul>
     </div>
   </div>
@@ -896,6 +616,7 @@
       </div>
     </div>
     <div class="why-image reveal">
+      <div class="why-image-accent"></div>
       <img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/index_img/3.jpg?raw=true" alt="Construction work in progress" loading="lazy">
     </div>
   </div>
@@ -908,25 +629,118 @@
     <h2 class="section-title">Recent <em>Projects</em></h2>
   </div>
   <div class="gallery-teaser-grid reveal">
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true" alt="Project 1" loading="lazy"></div>
+    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true"  alt="Project 1" loading="lazy"></div>
     <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner2.jpg?raw=true" alt="Project 2" loading="lazy"></div>
     <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner3.jpg?raw=true" alt="Project 3" loading="lazy"></div>
     <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner4.jpg?raw=true" alt="Project 4" loading="lazy"></div>
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/index_img/3.jpg?raw=true" alt="Project 5" loading="lazy"></div>
-    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true" alt="Project 6" loading="lazy" style="filter:brightness(0.8) contrast(1.1)"></div>
+    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/1bcc07e9a267abfe16b6ae3469750bb0b0c5df3a/index_img/3.jpg?raw=true"           alt="Project 5" loading="lazy"></div>
+    <div class="gallery-teaser-item"><img src="https://github.com/gtwebstudio101-pixel/mconstructionuk/blob/cf7ce07cd6235956bd0fd48365745ed546d88eed/index_img/banner.jpg?raw=true"  alt="Project 6" loading="lazy" style="filter:brightness(0.8) contrast(1.1)"></div>
   </div>
   <div class="gallery-link-wrap reveal" style="margin-top:40px">
     <a class="btn-primary" href="graller.html">View Full Gallery</a>
   </div>
 </section>
 
-<!-- CONTACT - DIRECT GMAIL COMPOSE LINK -->
+<!-- ★ CUSTOMER REVIEWS ★ -->
+<section id="reviews" style="padding:0;overflow:hidden;">
+  <div class="reviews-header reveal">
+    <div class="section-eyebrow">Customer Reviews</div>
+    <h2 class="section-title">What Our <em>Clients Say</em></h2>
+  </div>
+  <div class="reviews-scroller">
+    <div class="reviews-track" id="reviews-track">
+
+      <div class="review-card">
+        <div class="review-source">Google</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excellent work from start to finish. The team was professional, punctual and left the site spotless every day. Our loft conversion is stunning — exactly what we wanted."</p>
+        <div class="review-author">
+          <div class="review-avatar">SH</div>
+          <div><div class="review-name">Sarah H.</div><div class="review-location">St John's Wood, NW8</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-source">Google</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Used M Construction for a full bathroom renovation. Fantastic attention to detail, great communication throughout. Highly recommend — will definitely use again."</p>
+        <div class="review-author">
+          <div class="review-avatar">JM</div>
+          <div><div class="review-name">James M.</div><div class="review-location">Maida Vale, W9</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-source">Checkatrade</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Outstanding roofing job. They identified the problem quickly, gave a fair quote and completed within the agreed timeframe. No mess, no fuss. Brilliant service."</p>
+        <div class="review-author">
+          <div class="review-avatar">LP</div>
+          <div><div class="review-name">Linda P.</div><div class="review-location">Hampstead, NW3</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-source">Google</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Our kitchen extension looks incredible. The craftsmanship is top quality and they finished on budget. Couldn't be happier — the whole family loves the new space."</p>
+        <div class="review-author">
+          <div class="review-avatar">TR</div>
+          <div><div class="review-name">Tom R.</div><div class="review-location">Kilburn, NW6</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-source">Checkatrade</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Very reliable and honest builders. They flagged issues we didn't even know about and sorted everything cleanly. Will be using them again for our next project."</p>
+        <div class="review-author">
+          <div class="review-avatar">AB</div>
+          <div><div class="review-name">Anita B.</div><div class="review-location">Regent's Park, NW1</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-source">Google</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The basement conversion is beyond our expectations. A tricky job done perfectly. The team were respectful of our home throughout the whole build. 10/10 from us."</p>
+        <div class="review-author">
+          <div class="review-avatar">DC</div>
+          <div><div class="review-name">David C.</div><div class="review-location">Belsize Park, NW3</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-source">Google</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"New staircase and carpentry work is beautiful. Such skilled craftsmen — you can see the care they put into every detail. Our hallway is completely transformed."</p>
+        <div class="review-author">
+          <div class="review-avatar">FO</div>
+          <div><div class="review-name">Fatima O.</div><div class="review-location">Swiss Cottage, NW3</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-source">Checkatrade</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Had them do full rewiring and new electrics. Tidy, professional and thorough. They explained everything clearly and the price was very competitive. Highly recommend."</p>
+        <div class="review-author">
+          <div class="review-avatar">MK</div>
+          <div><div class="review-name">Mike K.</div><div class="review-location">Marylebone, W1</div></div>
+        </div>
+      </div>
+
+    </div><!-- end reviews-track -->
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
   <div class="section-eyebrow reveal">Get in Touch</div>
   <h2 class="section-title reveal">Request a <em>Quote</em></h2>
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <p>Fill in the form below, then click "Send Quote Request" to open Gmail in your browser with all your details pre-filled. Just review and send!</p>
+      <p>Whether you have a query or are ready to start your project, our team is ready to help. Call, email, or fill in the form and we'll get back to you promptly.</p>
       <div class="contact-items">
         <div class="contact-item">
           <div class="contact-icon">
@@ -962,63 +776,46 @@
         </div>
       </div>
     </div>
-
-    <!-- Form that captures data and opens GMAIL COMPOSE in browser -->
-    <div class="reveal">
-      <div class="quote-box">
-        <h3>Request a Quote</h3>
-        <p>Fill in your details below, then click the button to open Gmail in your browser with all information pre-filled.</p>
-        
-        <form id="quoteForm" onsubmit="openGmailCompose(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">First Name *</label>
-              <input type="text" id="fname" name="fname" placeholder="John" required>
-            </div>
-            <div class="form-group">
-              <label for="lname">Last Name *</label>
-              <input type="text" id="lname" name="lname" placeholder="Smith" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="07700 000000">
-          </div>
-          <div class="form-group">
-            <label for="service">Service Required</label>
-            <select id="service" name="service">
-              <option value="">Select a service…</option>
-              <option>Extensions</option>
-              <option>Roofing</option>
-              <option>Basement Conversion</option>
-              <option>Bathroom Renovation</option>
-              <option>Kitchen Installation</option>
-              <option>Electrics</option>
-              <option>Landscaping</option>
-              <option>Decorating</option>
-              <option>New Build</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Message / Project Details *</label>
-            <textarea id="message" name="message" placeholder="Tell us about your project…" required></textarea>
-          </div>
-          <button type="submit" class="quote-gmail-btn">
-            Send Quote Request (Opens Gmail)
-          </button>
-        </form>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="John" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Smith" required>
+        </div>
       </div>
-      
-      <div class="simple-email-box" style="margin-top: 20px;">
-        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Or email us directly:</p>
-        <a href="mailto:mconstructionuk@aol.com" class="simple-email-link">mconstructionuk@aol.com</a>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" required>
       </div>
-    </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="07700 000000">
+      </div>
+      <div class="form-group">
+        <label for="service">Service Required</label>
+        <select id="service">
+          <option value="">Select a service…</option>
+          <option>Extensions</option>
+          <option>Roofing</option>
+          <option>Basement Conversion</option>
+          <option>Bathroom / Kitchen</option>
+          <option>Electrics</option>
+          <option>Landscaping</option>
+          <option>Painting & Decorating</option>
+          <option>New Build</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us about your project…" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message</button>
+    </form>
   </div>
 </section>
 
@@ -1046,10 +843,7 @@
         <li><a href="#services">Roofing</a></li>
         <li><a href="#services">Basements</a></li>
         <li><a href="#services">Bathrooms</a></li>
-        <li><a href="#services">Kitchens</a></li>
         <li><a href="#services">Electrics</a></li>
-        <li><a href="#services">Landscaping</a></li>
-        <li><a href="#services">Decorating</a></li>
       </ul>
     </div>
     <div>
@@ -1072,7 +866,7 @@
   // Hero slideshow
   let currentSlide = 0;
   const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.dot');
+  const dots   = document.querySelectorAll('.dot');
   function goSlide(n) {
     slides[currentSlide].classList.remove('active');
     dots[currentSlide].classList.remove('active');
@@ -1082,88 +876,36 @@
   }
   setInterval(() => goSlide((currentSlide + 1) % slides.length), 5000);
 
-  // Phone popup functions
-  function openPhonePopup() {
-    document.getElementById('phonePopup').classList.add('open');
-  }
-  function closePhonePopup() {
-    document.getElementById('phonePopup').classList.remove('open');
-  }
-  function closePhonePopupOutside(event) {
-    if (event.target === document.getElementById('phonePopup')) {
-      closePhonePopup();
-    }
-  }
+  // Phone popup
+  function openPhonePopup() { document.getElementById('phonePopup').classList.add('open'); }
+  function closePhonePopup() { document.getElementById('phonePopup').classList.remove('open'); }
+  function closePhonePopupOutside(e) { if (e.target === document.getElementById('phonePopup')) closePhonePopup(); }
 
   // Mobile menu
   function toggleMenu() {
     const m = document.getElementById('mob-menu');
     m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
   }
-  function closeMenu() {
-    document.getElementById('mob-menu').style.display = 'none';
-  }
+  function closeMenu() { document.getElementById('mob-menu').style.display = 'none'; }
+
+  // Reviews — duplicate cards for seamless infinite loop
+  const track = document.getElementById('reviews-track');
+  if (track) track.innerHTML += track.innerHTML;
 
   // Scroll reveal
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Open Gmail Compose with pre-filled data
-  function openGmailCompose(event) {
-    event.preventDefault();
-    
-    // Get form values
-    const firstName = document.getElementById('fname').value;
-    const lastName = document.getElementById('lname').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const service = document.getElementById('service').value;
-    const message = document.getElementById('message').value;
-    
-    // Build email body
-    const subject = `Quote Request - ${firstName} ${lastName}`;
-    
-    const body = `========================================
-QUOTE REQUEST - M CONSTRUCTION UK
-========================================
-
-CUSTOMER DETAILS:
------------------
-Full Name: ${firstName} ${lastName}
-Email: ${email}
-Phone: ${phone || 'Not provided'}
-
-PROJECT DETAILS:
-----------------
-Service Required: ${service || 'Not specified'}
-
-Message:
-${message}
-
-----------------------------------------
-Please contact me to discuss this project.
-Thank you!
-----------------------------------------`;
-    
-    // Encode for URL
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
-    
-    // Create Gmail compose link and open in new tab
-    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=mconstructionuk@aol.com&su=${encodedSubject}&body=${encodedBody}`;
-    window.open(gmailLink, '_blank');
-    
-    // Show feedback
-    const btn = event.target.querySelector('button[type="submit"]') || event.target;
-    const originalText = btn.textContent;
-    btn.textContent = 'Opening Gmail...';
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = 'Sent! ✓';
     btn.style.background = '#4CAF50';
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.style.background = '';
-    }, 3000);
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.style.color = ''; }, 3000);
   }
 </script>
 </body>
